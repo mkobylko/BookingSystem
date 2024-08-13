@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Stays</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="~{fragments/header.html :: header}"></header>
+
+<div class="container">
+    <h4 class="mt-4 mb-3 text-center">Панель адміністратора</h4>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-light text-center">
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Apartments</th>
+            <th>Actions</th>
+            <th>Update role</th>
+          <!--  <th>Details</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td>
+                <div class="d-flex align-items-center">
+                    <img class="avatar me-2" src="/icon.png" style="width: 30px; height: 30px;" />
+                    <div>
+                        <p class="fw-bold mb-0" th:text="${user.firstName + ' ' + user.lastName}"></p>
+                        <p class="text-muted mb-0" th:text="${user.email}"></p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <span class="badge bg-success" th:text="${user.active ? 'Active' : 'Inactive'}"></span>
+            </td>
+            <td th:text="${user.roles[0]}"></td>
+            <td class="text-center">
+                <form th:action="@{/admin/user/ban/{id}(id=${user.id})}" method="post">
+                    <button type="submit" class="btn btn-link text-danger">Ban</button>
+                </form>
+            </td>
+            <td class="text-center"><a th:href="@{/admin/user/edit/{id}(id=${user.id})}" class="btn btn-primary btn-sm">Update</a></td>
+           <!-- <td class="text-center"><a th:href="@{/user/{id}(id=${user.id})}" class="btn btn-info btn-sm">Details</a></td>-->
+        </tr>
+        <tr th:if="${users.isEmpty()}">
+            <td colspan="6" class="text-center">No users</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer th:insert="~{fragments/footer.html :: footer}"></footer>
+</body>
+</html>

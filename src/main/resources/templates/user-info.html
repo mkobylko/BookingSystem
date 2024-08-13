@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User info</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.7/holder.min.js"></script>
+
+<body>
+<header th:insert="~{fragments/header.html :: header}"></header>
+<div class="contaier">
+<h3>Подробная информация о пользователе <span th:text="${user.email}"></span></h3>
+<b>Email: </b><span th:text="${user.email}"></span><br>
+
+<h4>Товары пользователя <span th:text="${user.firstName}"></span></h4>
+
+<div th:if="${apartments != null and not #lists.isEmpty(apartments)}">
+    <div th:each="apartment : ${apartments}">
+        <div>
+            <p><b th:text="${apartment.name}"></b> <span th:text="${apartment.price}"></span> руб. | <a th:href="@{/product/{id}(id=${apartment.id})}">Подробнее...</a></p>
+        </div>
+    </div>
+</div>
+<div th:unless="${apartments != null and not #lists.isEmpty(apartments)}">
+    <h3>Товаров нет</h3>
+</div>
+
+<div th:if="${errorMessage != null}">
+    <h2 style="color: red" th:text="${errorMessage}"></h2>
+</div>
+</div>
+<div th:insert="~{fragments/footer.html :: footer}"> </div>
+</body>
+</html>

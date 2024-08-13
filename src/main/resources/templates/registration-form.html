@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.7/holder.min.js"></script>
+
+<body>
+<header th:insert="~{fragments/header.html :: header}"></header>
+
+<div class="vh-100" style="background-color: #eee;">
+    <div class="container h-100">
+        <div class="row h-auto">
+            <div style="margin-top: 9%;" class="d-flex justify-content-center align-items-center">
+                <div class="card text-white mt-0" style="background: #6B8E23">
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 col-lg-5 order-2 order-lg-1">
+                                <img src="/reg.jpg" class="img-fluid mb-4" alt="Sample image"
+                                     style="width: 220%; height: 80%; margin-top: 20%; ">
+                            </div>
+                            <div class="col-md-7 col-lg-6 order-1 order-lg-2">
+                                <p class="text-center h1 fw-bold mb-4 mx-1 mx-md-3 mt-4">Sign up</p>
+                                <form class="mx-1 mx-md-4" th:action="@{/registration}" method="post">
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" class="form-control" name="firstName"/>
+                                            <label class="form-label">First name</label>
+                                        </div>
+                                        <div class="form-outline flex-fill mb-0 ms-3">
+                                            <input type="text" class="form-control" name="lastName"/>
+                                            <label class="form-label">Last name</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="email" name="email" class="form-control"/>
+                                            <label class="form-label">Your Email</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="password" name="password" class="form-control"/>
+                                            <label class="form-label">Password</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-check d-flex justify-content-center mb-5">
+                                        <input class="form-check-input me-2" type="checkbox" value=""/>
+                                        <label class="form-check-label">Register as a seller</label>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button class="btn btn-primary btn-lg" type="submit">Register</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{fragments/footer.html :: footer}"> </div>
+</body>
+</html>

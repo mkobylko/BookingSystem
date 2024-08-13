@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.7/holder.min.js"></script>
+<body>
+<header th:insert="~{fragments/header.html :: header}"></header>
+
+<div class="vh-100 " style="background-color: #eee;">
+    <div class="container h-100" >
+        <div class="row h-auto" >
+            <div style="margin-top: 9%;" class="d-flex justify-content-center align-items-center">
+            <div class="col-md-9 col-xl-8">
+                <div class="card text-white mt-0" th:if="${not #authorization.expression('isAuthenticated()')}" style="background: #6B8E23" >
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12 col-lg-6 col-xl-5 order-1 order-lg-2">
+                                <p class="text-center h1 fw-bold mb-4 mx-1 mx-md-3 mt-4" >Login</p>
+
+                                <form class="mx-1 mx-md-4" th:action="@{/login}" method="post">
+
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="email" name="username" class="form-control"/>
+                                            <label class="form-label">Your Email</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="password" name="password" class="form-control"/>
+                                            <label class="form-label">Password</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button class="btn btn-primary btn-lg" type="submit">Login</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 d-flex justify-content-center pt-4">
+                                <img src="/log.jpg" class="img-fluid" alt="Sample image"
+                                     style="width: 90%; height: 90%;">
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${#authorization.expression('isAuthenticated()')}" class="alert alert-info">
+                    You already login
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div th:insert="~{fragments/footer.html :: footer}"> </div>
+</body>
+</html>

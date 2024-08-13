@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Apartment details</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.7/holder.min.js"></script>
+
+<body>
+<header th:insert="~{fragments/header.html :: header}"></header>
+<script>
+    function starmark(item) {
+        let mark = item.id[4];
+
+        for (let i = 2; i <= 5; i++) {
+            if (i <= mark) {
+                $("#mark" + i).addClass("checked");
+            } else {
+                $("#mark" + i).removeClass("checked");
+            }
+        }
+    }
+
+
+</script>
+
+
+<div class="container">
+    <section>
+        <div th:each="apartment : ${apartments}" class="alert alert-intro">
+            <div class="row mt-5">
+                <div class="col-lg-5 col-md-12 col-12 pt-1" style="overflow: hidden; text-align: center;">
+                    <img alt="" th:src="'data:image/jpeg;base64,' + ${apartment.photo}" style="width: 80%;height: 80%;">
+                </div>
+
+                <div class="col-lg-7 col-md-12 col-12">
+                    <div class="pt-3 pb-5">
+                        <h3 th:text="${apartment.name}"></h3><br>
+
+                        <div class="fs-6 mb-3" style="font-size: smaller; color: darkgreen">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
+                                 class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                            </svg>
+                            <span class="location"
+                                  th:text="${apartment.country + ', ' + apartment.city + ', ' + apartment.street}"></span>
+                        </div>
+                        <br><h5 th:text="${apartment.description}" style="word-wrap: break-word;"></h5><br>
+                        UAH <span th:text="${ apartment.price}">*per night</span>
+
+                    </div>
+
+                    <div th:if="${apartment.user.id == currentUser.id}">
+                        <div class="d-flex">
+                            <a th:href="'/stays/' + ${apartment.id} + '/update'" class="btn btn-outline-success me-2">Update</a>
+                            <form th:action="'/stays/' + ${apartment.id} + '/delete'" method="post">
+                                <button class="btn btn-success" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+                <form th:action="@{/reservation/add}" method="post">
+                    <div class="col-lg-9 card mb-4 rounded-3 shadow-sm mx-auto">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">Dates of stay</h4>
+                        </div>
+
+                        <div class="card-body mt-5">
+                            <div th:insert="~{fragments/datapickerApartmentDetails.html}"></div>
+                            <br>
+                            <div id="priceInfo" style="display: none;">
+                                <p class="font-weight-bold">Price for <span id="numberOfNights"></span> nights</p>
+                                <p>Total price: UAH <span id="totalPrice"></span></p>
+                            </div>
+
+                            <!--***-->
+                            <input type="hidden" th:value="${apartment.price}" name="price"/>
+                            <input type="hidden" th:value="${apartment.id}" name="apartment_id"/>
+                            <!--***-->
+                            <button type="submit" class="w-100 btn btn-lg btn-outline-primary">Book</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </section>
+    <section id='featured' class='my-2 pb-2 py-4 mt-4'>
+        <div class='container text-center mt-2 py-2'>
+            <h3>Reviews</h3>
+            <hr class='mx-auto'>
+        </div>
+    </section>
+    <div class="row">
+        <h5 class="mb-4"><strong>Add comment</strong></h5>
+        <div class="col-lg-2 mt-4 text-center col-md-12 col-12 col-sm">
+            <p>Mark</p>
+        </div>
+        <div class="col-lg-4 mt-4 col-md-12 col-12 col-sm">
+            <span onmouseover="starmark(this)" onclick="starmark(this)" id="mark1" class="fa fa-star checked"></span>
+            <span onmouseover="starmark(this)" onclick="starmark(this)" id="mark2" class="fa fa-star checked"></span>
+            <span onmouseover="starmark(this)" onclick="starmark(this)" id="mark3" class="fa fa-star checked"></span>
+            <span onmouseover="starmark(this)" onclick="starmark(this)" id="mark4" class="fa fa-star checked"></span>
+            <span onmouseover="starmark(this)" onclick="starmark(this)" id="mark5" class="fa fa-star checked"></span>
+        </div>
+        <div class="col-lg-6 col-md-12 mt-4 col-12 col-sm">
+            <div class="text-end">
+                <a href="javascript:addReviews()" class='btn btn-add'>Send</a>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-12 col-12 col-sm">
+            <p id='user' class='text-center mt-4'><strong><p>user login</p></strong></p>
+        </div>
+        <div class="col-lg-10 col-md-12 col-12 col-sm">
+            <label for="message"></label>
+            <textarea name='message' class="form-control" id="message" placeholder="Your message"
+                      required=""></textarea><br><br>
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{fragments/footer.html :: footer}"></div>
+</body>
+</html>

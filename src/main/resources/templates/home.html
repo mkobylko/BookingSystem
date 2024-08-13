@@ -1,0 +1,58 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"><\/script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.7/holder.min.js"></script>
+
+<body>
+<header th:insert="~{fragments/header.html :: header}"></header>
+<div style="background-color: #6B8E23;">
+    <div class="position-relative overflow-hidden">
+        <div style="position: relative; max-width: 90%; margin: 0 auto;">
+            <img src="/mainpage.jpg" class="img-fluid" style="width: 100%;" alt="Sample image">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 35%; text-align: center; background-color: white; padding: 20px;">
+                <h1 class="display-4 font-weight-normal">Book your dream</h1>
+                <p class="lead font-weight-normal">Choose the perfect hotel for your trip. Start your adventures right
+                    now!</p>
+                <a class="btn btn-outline-secondary" href="/stays">View hotels</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+        <div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden flex-grow-1" style="background-color: #6B8E23; max-width: 50%;">
+            <div class="my-3 py-3">
+                <h2 class="display-5">The best vacation</h2>
+                <p class="lead">for you and your family</p>
+            </div>
+            <img src="/mainpage2.jpg" class="img-fluid" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;" alt="Опис зображення">
+        </div>
+        <div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden flex-grow-1" style="background-color: #eee; max-width: 50%;">
+            <div class="my-3 p-3">
+                <h2 class="display-5">Book today</h2>
+                <p class="lead"> to relax tomorrow</p>
+            </div>
+            <img src="/mainpage3.webp" class="img-fluid" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;" alt="Опис зображення">
+        </div>
+    </div>
+
+</div>
+
+<div th:insert="~{fragments/footer.html :: footer}"></div>
+</body>
+</html>

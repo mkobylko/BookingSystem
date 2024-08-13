@@ -1,0 +1,96 @@
+input {
+    padding: 22px 15px !important;
+    border: 1px solid #CFD8DC !important;
+    border-radius: 4px !important;
+    box-sizing: border-box;
+    background-color: #fff !important;
+    color: #000 !important;
+    font-size: 16px !important;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+
+
+.fa-calendar {
+    position: absolute;
+    top: 13px;
+    font-size: 20px;
+    color: #1976D2;
+    z-index: 1000;
+}
+
+#fa-1 {
+    left: calc(50% - 40px);
+}
+
+#fa-2 {
+    left: calc(100% - 40px);
+}
+
+.form-control-placeholder {
+    position: absolute;
+    top: -10px !important;
+    padding: 12px 2px 0 2px;
+    opacity: 0.5;
+}
+
+#end-p {
+    left: calc(50% + 4px);
+}
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+    font-size: 95%;
+    top: 10px;
+    transform: translate3d(0, -100%, 0);
+    opacity: 1;
+}
+
+::placeholder {
+    color: #BDBDBD;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: #BDBDBD;
+}
+
+::-ms-input-placeholder {
+    color: #BDBDBD;
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0;
+}
+
+
+.datepicker table tr td.today, span.focused {
+    border-radius: 50% !important;
+    background-image: linear-gradient(#FFF3E0, #FFE0B2);
+}
+
+thead tr:nth-child(2) {
+    background-color: #1976D2 !important;
+}
+
+/*Weekday title*/
+thead tr:nth-child(3) th {
+    font-weight: bold !important;
+    padding: 20px 10px !important;
+    color: #BDBDBD !important;
+}
+
+tbody tr td {
+    padding: 10px !important;
+}
+
+tfoot tr:nth-child(2) th {
+    padding: 10px !important;
+    border-top: 1px solid #CFD8DC !important;
+}
+
+

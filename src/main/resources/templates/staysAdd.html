@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Stays add</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.7/holder.min.js"></script>
+
+<body>
+<header th:insert="~{fragments/header.html :: header}"></header>
+
+<div class="container mt-5">
+   <h1>Add an announcement</h1>
+    <form th:action="@{/stays/add}" method="post" enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <label class="form-label">Name of apartments</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" >Description</label>
+            <textarea class="form-control" name="description" rows="4"></textarea>
+
+        </div>
+        <h3>Address of apartments</h3>
+        <div class="mb-3">
+            <input class="form-control form-control-lg" type="text" placeholder="Country" name="country">
+        </div>
+        <div class="mb-3">
+            <input class="form-control form-control-lg" type="text" placeholder="City" name="city">
+        </div>
+        <div class="mb-3">
+            <input class="form-control form-control-lg" type="text" placeholder="Street" name="street">
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label">Price per night</label>
+            <input type="text" class="form-control" id="price" name="price">
+        </div>
+
+
+        <div class="mb-3">
+            <input type="file" class="form-control" id="photo" name="photo">
+            <label for="photo" class="form-label">Photo of apartments</label>
+        </div>
+
+        <div class="text-center">
+            <button class="w-20 btn btn-success " type="submit">Add</button>
+        </div>
+    </form>
+
+</div>
+<div th:insert="~{fragments/footer.html :: footer}"> </div>
+
+
+</body>
+</html>

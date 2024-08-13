@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User info</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.7/holder.min.js"></script>
+
+<body>
+<header th:insert="~{fragments/header.html :: header}"></header>
+
+
+<div class="container-fluid py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-md-10 col-lg-9 col-xl-7">
+            <div class="card w-100">
+                <div class="rounded-top text-white d-flex flex-row" style="background-color: #6B8E23; height: 100%;">
+                    <div class="ms-4 mt-5 d-flex flex-column" style="width: 50%;">
+                        <img class="avatar me-2" src="/icon.png"
+                             style="width: 80px; height: 80px; border-radius: 50%;"/>
+                    </div>
+                    <div class="ms-3 d-flex flex-column justify-content-center">
+                        <h5 class="mb-0" th:text="${currentUser.firstName + ' ' + currentUser.lastName}"></h5><br><br>
+                        <button type="button" class="btn btn-outline-light mt-2" data-mdb-ripple-color="dark">
+                            Edit profile
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="card-body p-4 text-black">
+                    <div class="mb-5">
+
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Email</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0" th:text="${currentUser.email}"></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Date of created account</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0" th:text="${currentUser.dateOfCreated}"></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <p class="lead fw-normal mb-0">Apartments</p>
+                        </div>
+
+
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3" th:each="apartment : ${apartments}">
+                            <div class="col">
+                                <div class="card shadow-sm">
+                                    <div style="overflow: hidden; text-align: center;">
+                                        <img alt="" th:src="'data:image/jpeg;base64,' + ${apartment.photo}"
+                                             style="width: 67%;height: 89%">
+
+                                    </div>
+                                    <div class="card-body">
+                                        <h2 class="card-text" th:text="${apartment.name}"></h2>
+                                        <p class="card-text"
+                                           th:text="${apartment.country + ', ' + apartment.city}"></p>
+
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <a th:href="'/stays/' + ${apartment.id}">More about</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    <div th:insert="~{fragments/footer.html :: footer}"></div>
+</body>
+</html>
